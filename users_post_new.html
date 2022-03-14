@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+</head>
+<body>
+    <h1>Add Post for {{user.first_name}} {{user.last_name}}</h1>
+    <form action="/users/{{user.id}}/posts/new" method="POST">
+        <label>Title</label>
+        <input type="text" name="title" required>
+        <label>Content</label>
+        <input type="text" name="content" required>
+        {% for tag in tags %}
+        <input type="checkbox" name="tag" value="{{tag.name}}">
+        <label>{{tag.name}}</label>
+        {% endfor %}
+        <button>Add</button>
+    </form>
+    <form action="/users/{{user.id}}">
+        <button>Cancel</button>
+    </form>
+</body>
+</html>

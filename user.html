@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User {{user.id}}</title>
+</head>
+<body>
+    <img src="{{user.image_url}}">
+    <h1>{{user.first_name}} {{user.last_name}}</h1>
+    <form action="/users/{{user.id}}/edit">
+        <button>Edit</button>
+    </form>
+    <form action="/users/{{user.id}}/delete" method="POST">
+        <button>Delete</button>
+    </form>
+    <h1>Posts</h1>
+    <ul>
+        {% for p in posts %}
+            {% if p.user_id == user.id %}
+            <li><a href="/posts/{{p.id}}">{{p.title}}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <form action="/users/{{user.id}}/posts/new">
+        <button>Add Post</button>
+    </form>
+</body>
+</html>
